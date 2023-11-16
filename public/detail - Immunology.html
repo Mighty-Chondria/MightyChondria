@@ -10,9 +10,6 @@
     helps students in the medical fields  learn complex and difficult 
     topics in an engaging, fun, and easy way in the Arabic language ."/>
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
@@ -28,6 +25,49 @@
 </head>
 
 <body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC_6NiT5uErNRaRvkTTM8E4gOkgGJgZJIA",
+          authDomain: "mighty-chondria.firebaseapp.com",
+          projectId: "mighty-chondria",
+          storageBucket: "mighty-chondria.appspot.com",
+          messagingSenderId: "529702754222",
+          appId: "1:529702754222:web:672b1239ce1dcd65b7da3f",
+          measurementId: "G-EQBWXQ8QJ2"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+    
+    // Function to check authentication state
+    function checkAuthState() {
+        const user = auth.currentUser;
+        return !!user; // Returns true if the user is logged in, false otherwise
+      }
+        
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Page loaded');
+        // Wait for Firebase to load
+        if (app) {
+            // Check authentication state when the page is loaded
+            if (!checkAuthState()) {
+                // User is not logged in, redirect to the login page
+                window.location.href = 'login.html'; // Replace with the actual URL of your login page
+            }
+        }
+    });
+    </script>
      <!-- Topbar Start -->
      <div class="container-fluid bg-dark">
         <div class="row py-2 px-lg-5">
@@ -74,7 +114,7 @@
                    
                     <a href="contact.html" class="nav-item nav-link ">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a>
+               <!---- <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a>-->
             </div>
         </nav>
     </div>

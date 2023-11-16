@@ -27,18 +27,19 @@
 
 </head>
 <body>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+  <script  type="module">
+    // Import the functions you need from the SDKs you need
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+	  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+	  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyC_6NiT5uErNRaRvkTTM8E4gOkgGJgZJIA",
+          apiKey: "AIzaSyAUF4fIpd4aZ8ow5XPeAQaTdjcHraCSWZM",
           authDomain: "mighty-chondria.firebaseapp.com",
           projectId: "mighty-chondria",
           storageBucket: "mighty-chondria.appspot.com",
@@ -52,40 +53,39 @@
         const analytics = getAnalytics(app);
         const auth = getAuth();
         console.log(app);
-        
-         //----- Login code start	  
-      document.getElementById("login").addEventListener("click", function() {
-		  var email =  document.getElementById("login_email").value;
-		  var password = document.getElementById("login_password").value;
-
-		  signInWithEmailAndPassword(auth, email, password)
-		  .then((userCredential) => {
-		    // Signed in 
-		    const user = userCredential.user;
-		    console.log(user);
-		    alert(user.email+" Login successfully!!!");
-		    document.getElementById('logout').style.display = 'block';
-		    // ...
-		  })
-		  .catch((error) => {
-		    const errorCode = error.code;
-		    const errorMessage = error.message;
-		    console.log(errorMessage);
-		    alert(errorMessage);
-		  });		  		  
-	  });
-	  //----- End
-    
+        // Login code
+    document.getElementById("login").addEventListener("click", function() {
+    var email = document.getElementById("login_email").value;
+    var password = document.getElementById("login_password").value;
+  
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        alert(user.email + " Login successfully!!!");
+        //document.getElementById('logout').style.display = 'block';
+  
+        // Redirect to the home page
+        window.location.href = 'home.html';  // Replace with the actual URL of your home page
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        alert(errorMessage);
+      });
+  });
 
     </script>
 
-    <div class="form">
+    <form class="form" name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data">
         <h1 class="heading">login</h1>
         <input type="email"id="login_email" placeholder="email" autocomplete="off" class="email" required>
         <input type="password"id="login_password" placeholder="password" autocomplete="off" class="password" required>
         <button id="login" class="submit-btn">log in</button>
         <a href="register.html" class="link">don't have an account? Register one</a>
-    </div>
+    </form>
 
 
     
